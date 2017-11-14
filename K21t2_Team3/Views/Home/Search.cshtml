@@ -1,0 +1,43 @@
+﻿@model IEnumerable<K21t2_Team3.Models.PROPERTY>
+@{
+    ViewBag.Title = "Search Result";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+<!--Contents ===================================================-->
+
+<hr class="featurette-divider">
+
+
+<!--Project List-->
+
+<section class="project" id="project" style="font-family:corbel">
+    <div class="container text-center">
+        <h2> Newest listings chose by <span style="color:#8730f6">PPC Rental</span> </h2>
+        <img src="images/hr.png" width="30%"><br>
+        <pz> A collection of our favourite projects. </pz>
+    </div>
+
+    <div class="project-grid">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <div class="card card-block">
+                        <a href="#">
+                            <img src="~/Images/@item.Avatar">
+                            <div class="project-over">
+                                <div>
+                                    <h3 class="card-title">@item.PropertyName</h3>
+                                    <p class="card-text">@item.Content.Substring(0, 30)...</p>
+                                    <p><a class="btn btn-default" href="~/Project/Detail/@item.ID/#dt" role="button">View details »</a></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

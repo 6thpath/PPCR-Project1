@@ -1,0 +1,141 @@
+﻿@model K21t2_Team3.ViewModels.ViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+<!--Contents ===================================================-->
+
+<hr class="featurette-divider">
+
+<div class="row">
+    <div style="width: 90%; margin: 0 auto 0; padding-top: 1%; padding-bottom: 1%;text-align:center">
+        <div>
+            <!--Property Type-->
+            <select id="soflow">
+                <option style="font-weight:bold">Property Type</option>
+                <option>Apartment</option>
+                <option>Villa</option>
+                <option>Office</option>
+                <option>House</option>
+            </select>
+            <!--District-->
+            <select id="soflow" class="select1" name="select1">
+                <option value="-1" selected disabled style="font-weight:bold">District</option>
+                @foreach (var item in Model.zDistricts)
+                {
+                    <option value="@item.ID">@item.DistrictName</option>
+                }
+            </select>
+            <!--Ward-->
+            <select id="soflow" class="select2" name="select2">
+                <option value="-1" selected disabled style="font-weight:bold">Ward</option>
+                @foreach (var item in Model.zWards)
+                {
+                    <option value="@item.District_ID">@item.WardName</option>
+                }
+            </select>
+            <!--Street-->
+            <select id="soflow" class="select3" name="select3">
+                <option value="-1" selected disabled style="font-weight:bold">Street</option>
+                @foreach (var item in Model.zStreets)
+            {
+                    <option value="@item.District_ID">@item.StreetName</option>
+                }
+            </select>
+            <!--Beds-->
+            <select id="soflow">
+                <option style="font-weight:bold">Beds</option>
+                <option value="0">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+                <option value="5">5+</option>
+            </select>
+            <!--Baths-->
+            <select id="soflow">
+                <option style="font-weight:bold">Baths</option>
+                <option value="0">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+                <option value="5">5+</option>
+            </select>
+        </div>
+        <div>
+            <form role="search" action="@Url.Action("Search","Home")" method="get">
+                <div class="form-group">
+                    <!--Keyword-->
+                    <input type="text" placeholder="Search..." name="text" style="font-family:Corbel;border-radius:5px;border: 1px solid white;margin:10px;" />
+                    <!--Button-->
+                    <button type="submit" class="btn btn-primary" style="font-family: Corbel; font-weight:bold;margin-left:5%;border-color:white;">Search Property</button>
+                </div>
+            </form>
+        </div>
+        @*<form role="search" action="@Url.Action("Search","Home")" method="get">
+                <!--Keyword-->
+                <input type="text" placeholder="  Keywords..." style="font-family:Corbel;border-radius:5px;border: 1px solid white;margin:10px;" />
+                <!--Button-->
+                <button type="submit" class="btn btn-primary" style="font-family: Corbel; font-weight:bold;margin-left:5%;border-color:white;">Search Property</button>
+            </form>*@
+    </div>
+</div>
+<hr class="featurette-divider">
+
+<!--Project List-->
+
+<section class="project" id="project" style="font-family:corbel">
+    <div class="container text-center">
+        <h2> Newest listings chose by <span style="color:#8730f6">PPC Rental</span> </h2>
+        <img src="images/hr.png" width="30%"><br>
+        <pz> A collection of our favourite projects. </pz>
+    </div>
+
+    <div class="project-grid">
+        <div class="row">
+            @foreach (var item in Model.zProperties)
+            {
+                <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <div class="card card-block">
+                        <a href="#">
+                            <img src="~/Images/@item.Avatar">
+                            <div class="project-over">
+                                <div>
+                                    <h3 class="card-title">@item.PropertyName</h3>
+                                    <p class="card-text">@item.Content.Substring(0, 30)...</p>
+                                    <p><a class="btn btn-default" href="~/Project/Detail/@item.ID/#dt" role="button">View details »</a></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+<script type="text/javascript">
+    $(".select1").change(function () {
+        if ($(this).data('options') === undefined) {
+            /*Taking an array of all options-2 and kind of embedding it on the select1*/
+            $(this).data('options', $('.select2 option').clone());
+        }
+        var id = $(this).val();
+        var options = $(this).data('options').filter('[value=' + id + ']');
+        $('.select2').html(options);
+    });
+
+    $(".select2").change(function () {
+        if ($(this).data('options') === undefined) {
+            /*Taking an array of all options-3 and kind of embedding it on the select1*/
+            $(this).data('options', $('.select3 option').clone());
+        }
+        var id = $(this).val();
+        var options = $(this).data('options').filter('[value=' + id + ']');
+        $('.select3').html(options);
+    });
+</script>
