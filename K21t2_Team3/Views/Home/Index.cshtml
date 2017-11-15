@@ -11,77 +11,72 @@
 
 <div class="row">
     <div style="width: 90%; margin: 0 auto 0; padding-top: 1%; padding-bottom: 1%;text-align:center">
-        <div>
-            <!--Property Type-->
-            <select id="soflow">
-                <option style="font-weight:bold">Property Type</option>
-                <option>Apartment</option>
-                <option>Villa</option>
-                <option>Office</option>
-                <option>House</option>
-            </select>
-            <!--District-->
-            <select id="soflow" class="select1" name="select1">
-                <option value="-1" selected disabled style="font-weight:bold">District</option>
-                @foreach (var item in Model.zDistricts)
-                {
-                    <option value="@item.ID">@item.DistrictName</option>
-                }
-            </select>
-            <!--Ward-->
-            <select id="soflow" class="select2" name="select2">
-                <option value="-1" selected disabled style="font-weight:bold">Ward</option>
-                @foreach (var item in Model.zWards)
-                {
-                    <option value="@item.District_ID">@item.WardName</option>
-                }
-            </select>
-            <!--Street-->
-            <select id="soflow" class="select3" name="select3">
-                <option value="-1" selected disabled style="font-weight:bold">Street</option>
-                @foreach (var item in Model.zStreets)
+        <form role="search" action="@Url.Action("Search","Home")" method="get">
+            <div class="form-group">
+                <div>
+                    <!--Property Type-->
+                    <select id="soflow">
+                        <option style="font-weight:bold">Property Type</option>
+                        <option>Apartment</option>
+                        <option>Villa</option>
+                        <option>Office</option>
+                        <option>House</option>
+                    </select>
+                    <!--District-->
+                    <select id="soflow" class="select1" name="select1">
+                        <option value="-1" selected disabled style="font-weight:bold">District</option>
+                        @foreach (var item in Model.zDistricts)
+                        {
+                            <option value="@item.ID">@item.DistrictName</option>
+                        }
+                    </select>
+                    <!--Ward-->
+                    <select id="soflow" class="select2" name="select2">
+                        <option value="-1" selected disabled style="font-weight:bold">Ward</option>
+                        @foreach (var item in Model.zWards)
+                        {
+                            <option value="@item.District_ID">@item.WardName</option>
+                        }
+                    </select>
+                    <!--Street-->
+                    <select id="soflow" class="select3" name="select3">
+                        <option value="-1" selected disabled style="font-weight:bold">Street</option>
+                        @foreach (var item in Model.zStreets)
             {
-                    <option value="@item.District_ID">@item.StreetName</option>
-                }
-            </select>
-            <!--Beds-->
-            <select id="soflow">
-                <option style="font-weight:bold">Beds</option>
-                <option value="0">Any</option>
-                <option value="1">1+</option>
-                <option value="2">2+</option>
-                <option value="3">3+</option>
-                <option value="4">4+</option>
-                <option value="5">5+</option>
-            </select>
-            <!--Baths-->
-            <select id="soflow">
-                <option style="font-weight:bold">Baths</option>
-                <option value="0">Any</option>
-                <option value="1">1+</option>
-                <option value="2">2+</option>
-                <option value="3">3+</option>
-                <option value="4">4+</option>
-                <option value="5">5+</option>
-            </select>
-        </div>
-        <div>
-            <form role="search" action="@Url.Action("Search","Home")" method="get">
-                <div class="form-group">
+                            <option value="@item.District_ID">@item.StreetName</option>
+                        }
+                    </select>
+                    <!--Beds-->
+                    <select id="soflow">
+                        <option style="font-weight:bold">Beds</option>
+                        <option value="0">Any</option>
+                        <option value="1">1+</option>
+                        <option value="2">2+</option>
+                        <option value="3">3+</option>
+                        <option value="4">4+</option>
+                        <option value="5">5+</option>
+                    </select>
+                    <!--Baths-->
+                    <select id="soflow">
+                        <option style="font-weight:bold">Baths</option>
+                        <option value="0">Any</option>
+                        <option value="1">1+</option>
+                        <option value="2">2+</option>
+                        <option value="3">3+</option>
+                        <option value="4">4+</option>
+                        <option value="5">5+</option>
+                    </select>
+                </div>
+                <div>
+
                     <!--Keyword-->
                     <input type="text" placeholder="Search..." name="text" style="font-family:Corbel;border-radius:5px;border: 1px solid white;margin:10px;" />
                     <!--Button-->
                     <button type="submit" class="btn btn-primary" style="font-family: Corbel; font-weight:bold;margin-left:5%;border-color:white;">Search Property</button>
                 </div>
-            </form>
-        </div>
-        @*<form role="search" action="@Url.Action("Search","Home")" method="get">
-                <!--Keyword-->
-                <input type="text" placeholder="  Keywords..." style="font-family:Corbel;border-radius:5px;border: 1px solid white;margin:10px;" />
-                <!--Button-->
-                <button type="submit" class="btn btn-primary" style="font-family: Corbel; font-weight:bold;margin-left:5%;border-color:white;">Search Property</button>
-            </form>*@
+        </form>
     </div>
+</div>
 </div>
 <hr class="featurette-divider">
 
@@ -101,7 +96,7 @@
                 <div class="col-lg-3 col-sm-6 col-xs-12">
                     <div class="card card-block">
                         <a href="#">
-                            <img src="~/Images/@item.Avatar">
+                            <img src="~/Images/@item.Avatar" class="img-responsive img-thumbnail">
                             <div class="project-over">
                                 <div>
                                     <h3 class="card-title">@item.PropertyName</h3>
