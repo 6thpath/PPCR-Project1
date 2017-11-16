@@ -4,221 +4,25 @@
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*<style>
-        #head {
-            padding-right: 10px;
-        }
-
-            #head td {
-                width: 33.33%;
-                text-align: center;
-                padding: 5px;
-            }
-        #main {
-            padding-right: 10px;
-        }
-            #main td {
-                width: 20%;
-                text-align: center;
-                font-size: 18px;
-                color:black;
-            }
-    </style>*@
-@*<div style="font-family:Corbel;">
-        <hr />
-        <h4 style="background-color:rgba(0,0,0,0.3);font-family:Corbel;font-weight:bold;text-align:center;font-size:50px;color:white;letter-spacing:4px">&there4; Project Details &there4;</h4>
-        <hr />
-        <table id="head">
-            <!--Property Name-->
-            <tr style="background: linear-gradient(to right, #000428, #004e92);color:white;border:1px solid black;">
-                <td style="font-size:23px;letter-spacing:6px;font-weight:bold;">&sdot;&mdash;</td>
-                <td colspan="2" style="font-size:23px;letter-spacing:6px;font-weight:bold;"> @Html.DisplayFor(model => model.PropertyName) </td>
-                <td style="font-size:23px;letter-spacing:6px;font-weight:bold;">&mdash;&sdot;</td>
-            </tr>
-
-            <!--Images-->
-            <tr style="background-color: rgba(255,255,255,0.3)">
-                <td></td>
-                <td colspan="2"><img src="~/Images/@Model.Avatar" class="img-responsive img-thumbnail" width="100%" /></td>
-                <td></td>
-            </tr>
-
-            <!--Content-->
-            <tr style="background-color:rgba(255,255,255,0.6);color:black;font-size:15px;">
-                <td></td>
-                <td colspan="2" style="font-size:17px;">@Html.DisplayFor(model => model.Content)</td>
-                <td></td>
-            </tr>
-        </table>
-        <table id="main">
-            <tr>
-                <td colspan="6" style="background-color:rgba(0,0,0,0.5);"><hr /></td>
-            </tr>
-            <!--Property Type-->
-            <tr>
-                <td style="background-color:#d57b7b; font-weight:bold;">&rArr; Property Type</td>
-                <td colspan="2" style="background-color:rgba(248, 128, 252,0.8);font-weight:bold;">@Html.DisplayFor(model => model.PROPERTY_TYPE.CodeType)</td>
-                <td style="background-color:rgba(255,255,255,0.7)"></td>
-                <td style="background-color:rgba(255,255,255,0.7)"></td>
-            </tr>
-            <!--Area-->
-            <tr>
-                <td style="background-color:rgba(255,255,255,0.8)"></td>
-                <td style="font-weight:bold;background-color:#d57b7b">&rArr; @Html.DisplayNameFor(model => model.Area)</td>
-                <td colspan="2" style="background-color:rgba(248, 128, 252,0.8);font-weight:bold;">@Html.DisplayFor(model => model.Area)</td>
-                <td style="background-color:rgba(255,255,255,0.8)"></td>
-            </tr>
-
-            <!--Located At-->
-            <tr>
-                <td style="background-color:rgba(255,255,255,0.65)"></td>
-                <td style="background-color:rgba(255,255,255,0.65)"></tdstyle="background-color:#b97bd5;>
-                <td style="font-weight:bold;background-color:#d57b7b;">&rArr; Located At</td>
-                <td colspan="2" style="background-color:rgba(248, 128, 252,0.8);font-weight:bold;letter-spacing:1px;">
-                    @Html.DisplayFor(model => model.DISTRICT.DistrictName), <!--District-->
-                    @Html.DisplayFor(model => model.WARD.WardName), <!--Ward-->
-                    @Html.DisplayFor(model => model.STREET.StreetName). <!--Street-->
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="6" style="background-color:rgba(255,255,255,0.5);font-size:23px;letter-spacing:2px">
-                    <span style="font-weight:bold;">With &rArr;</span>
-                    <span style="font-size:30px;color:#fa4949;border:1px solid red;">&nbsp;@Html.DisplayFor(model => model.BedRoom)</span> Bedrooms,
-                    <span style="font-size:30px;color:#fa4949;border:1px solid red;">&nbsp;@Html.DisplayFor(model => model.BathRoom)</span> Bathrooms,
-                    <span style="font-size:30px;color:#fa4949;border:1px solid red;">&nbsp;@Html.DisplayFor(model => model.PackingPlace)</span> Parking Places.</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td colspan="6" style="background-color:rgba(0,0,0,0.5);"><hr /></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <!--Price-->
-            <tr>
-                <td colspan="6" style="background-color:rgba(0,0,0,0.6);line-height:50px;color:white;
-                                font-size:40px; font-weight:bold; letter-spacing: 4px;">&raquo; For Only &nbsp;&nbsp; <span style="color:#2bff3c">@Html.DisplayFor(model => model.Price)</span> &nbsp;&nbsp; @Html.DisplayFor(model => model.UnitPrice) &laquo;</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td colspan="6" style="background-color:rgba(0,0,0,0.5);"><hr /></td>
-            </tr>
-
-            <!--Contact-->
-            <tr style="background-color:rgba(0,0,0,0.6);">
-                <td colspan="6" style="color:white">&equiv; Please let us know if you have any <span style="color:#ef1d1d">questions</span>. &equiv;</td>
-                <td ></td>
-                <td></td>
-                <td></td>
-            </trstyle="background-color:>
-
-            <!--User Email-->
-            <tr>
-                <td style="background-color:rgba(0,0,0,0.6);"></td>
-                <td style="background-color: rgba(255,255,255,0.7); border-radius:10px"><span style="font-weight:bold">Email At:</span></td>
-                <td style="background-color:rgba(0,0,0,0.6);"></td>
-                <td style="background-color: #ef1d1d; border-radius:10px">@Html.DisplayFor(model => model.USER.Email)</td>
-                <td style="background-color:rgba(0,0,0,0.6);""></td>
-            </tr>
-
-            <!--Sub Email-->
-            <tr>
-                <td style="background-color:rgba(0,0,0,0.6);"></td>
-                <td style="background-color: #ef1d1d; border-radius:10px"><span style="font-weight:bold">Or:</span></td>
-                <td style="background-color:rgba(0,0,0,0.6);"></td>
-                <td style="background-color: rgba(255,255,255,0.7); border-radius:10px">@Html.DisplayFor(model => model.USER1.Email)</td>
-                <td style="background-color:rgba(0,0,0,0.6);"></td>
-            </tr>
-
-            <tr>
-                <td colspan="6" style="background-color:rgba(0,0,0,0.5);"><hr /></td>
-            </tr>
-
-            <!--Create At-->
-            <tr style="background-color:rgba(0,0,0,0.5);color:white">
-                <td style="color:white;">Create At: </td>
-                <td style="color:white;">@Html.DisplayFor(model => model.Created_at)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <!--Create Post-->
-            <tr style="background-color:rgba(0,0,0,0.5);color:white;">
-                <td style="color:white;">Posted At: </td>
-                <td style="color:white;">@Html.DisplayFor(model => model.Create_post)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <!--Update At-->
-            <tr style="background-color:rgba(0,0,0,0.5);color:white">
-                <td style="color:white;">Latest Update:</td>
-                <td style="color:white;">@Html.DisplayFor(model => model.Updated_at)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <!--Status-->
-            <tr style="background-color:rgba(0,0,0,0.5);">
-                <td style="color:white;">Status</td>
-                <td style="color:white;">@Html.DisplayFor(model => model.PROJECT_STATUS.Status_Name)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <!--Note-->
-            <tr style="background-color:rgba(0,0,0,0.5);">
-                <td style="color:white;">Note</td>
-                <td style="color:white;">@Html.DisplayFor(model => model.Note)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td colspan="6" style="background-color:rgba(0,0,0,0.5);"><hr /></td>
-            </tr>
-        </table>
-    </div>*@
 
 <style>
-    #Feature td{
-        padding:10px;
-        width:20%;
+    #Feature td {
+        padding: 10px;
+        width: 20%;
     }
 </style>
 
-<p id="dt" ></p>
+<p id="dt"></p>
 <hr />
-<div style="background-color:rgba(0,0,0,0.5);color:white;" >
+<div style="background-color:rgba(0,0,0,0.5);color:white;">
     <!--Property Name and Price-->
     <div style="font-family:Corbel;font-size:40px;color:white;padding-left:10px;padding-right:10px;background-color:rgba(0,0,0,0.3)">
         <table>
             <tr>
-                <td style="width:90%"><span style="color:#ff0000;text-shadow:1px 1px 50px #ff0000;"><i class="fa fa-file-code-o" aria-hidden="true"></i></span> &nbsp; 
-                    <span style="text-shadow:2px 2px 10px #747171">@Html.DisplayFor(model => model.PropertyName)</span></td>
+                <td style="width:90%">
+                    <span style="color:#ff0000;text-shadow:1px 1px 50px #ff0000;"><i class="fa fa-file-code-o" aria-hidden="true"></i></span> &nbsp;
+                    <span style="text-shadow:2px 2px 10px #747171">@Html.DisplayFor(model => model.PropertyName)</span>
+                </td>
                 <td style="width:10%">
                     <span style="color:rgb(0, 255, 33);text-shadow:1px 1px 50px rgb(0, 255, 33);">
                         @Html.DisplayFor(model => model.Price)
@@ -296,7 +100,7 @@
             </tr>
             <tr>
                 <td style="width:30%;padding:10px;text-align:center;">
-                    <p style="font-size:20px;" ><i class="fa fa-flag" aria-hidden="true"></i> &nbsp; PROJECT STATUS</p>
+                    <p style="font-size:20px;"><i class="fa fa-flag" aria-hidden="true"></i> &nbsp; PROJECT STATUS</p>
                     <p>@Html.DisplayFor(model => model.PROJECT_STATUS.Status_Name)</p>
                 </td>
             </tr>
@@ -308,5 +112,5 @@
 <hr />
 
 <p style="text-align:center;color:white">
-        <button class="btn btn-default"><a href="~/Views/Home/Index.cshtml">Back to Main Page</a></button>
-    </p>
+    <button class=" btn btn-primary"><a href="javascript:void(0);" onclick="history.go(-1);" style="color:white">Back to Projects List</a></button>
+</p>
