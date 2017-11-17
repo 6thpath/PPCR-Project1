@@ -24,7 +24,7 @@
             <!--District-->
             <select id="soflow" class="select1" name="select1" onchange='change2()'>
                 <option value="-1" selected disabled style="font-weight:bold">District</option>
-                @foreach (var item in Model.zDistricts)
+                @foreach (var item in Model.zDistricts) 
                 {
                     <option value="@item.ID">@item.DistrictName</option>
                 }

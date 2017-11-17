@@ -1,0 +1,247 @@
+﻿@model K21t2_Team3.ViewModels.ViewModel 
+@{
+    ViewBag.Title = "Post";
+}
+
+<h2>Post Property</h2>
+
+<div class="form-inline">
+    <p>
+        Chọn ảnh đại diện
+        <input type="text" name="picture" id="picture" class="form-control" />
+        <input type="file" id="fileUpload" accept="image/*" name="fileUpload" style="display:none;" />
+        <input type="button" id="btnUpload" value="..." class="btn btn-success" />
+    </p>
+<hr />
+</div>
+@section upload
+{
+    <script>
+        $(function () {
+            $('#btnUpload').click(function () {
+
+                $('#fileUpload').trigger('click');
+
+
+
+            });
+
+            $('#fileUpload').change(function () {
+
+                if (window.FormData !== undefined) {
+
+                    var fileUpload = $('#fileUpload').get(0);
+                    var files = fileUpload.files;
+                    var formData = new FormData();
+                    formData.append('file', files[0]);
+                    $.ajax(
+                        {
+                            type: 'POST',
+                            url: '/Post/ProcessUpload',
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            success: function (urlImage) {
+
+                                $('#pictureUpload').attr('src', urlImage);
+                                $('#picture').val(urlImage);
+
+                            },
+                            error: function (err) {
+                                alert('Xay ra loi khi upload:' + err.statusText);
+                            }
+
+                        });
+
+                }
+
+            });
+
+        });
+    </script>
+}
+<table style="width:800px", height="800px">
+    <tr>
+        <th>
+            Property name
+        </th>
+        <td  >
+            <input type="text" name="PropertyName" placeholder="Enter Property Name..." />
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Property type
+        </th>
+        <td >
+            <select id="soflow" style="width:160px" >
+                <option style="font-weight:bold">Property Type</option>
+                <option>Apartment</option>
+                <option>Villa</option>
+                <option>Office</option>
+                <option>House</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Features
+        </th>
+        <td>
+            <table style="width:420px">
+                <tr>
+                    <td>
+                        <input type="checkbox" name="" value=""/>Ban công
+                    </td>
+                    <td>
+                        <input type="checkbox" name="" value="" />Chỗ đậu xe
+                    </td>
+                    <td>
+                        <input type="checkbox" name="" value="" />Thang máy
+                    </td>
+                    <td>
+                        <input type="checkbox" name="" value="" />Cho nuôi thú cưng
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="" value="" />Vườn
+                    </td>
+                    <td>
+                        <input type="checkbox" name="" value="" />Nhà bếp
+                    </td>
+                    <td>
+                        <input type="checkbox" name="" value="" />Phòng GYM
+                    </td>
+                    <td>
+                        <input type="checkbox" name="" value="" />Bảo vệ
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="" value="" />Hồ bơi
+                    </td>
+                    <td>
+                        <input type="checkbox" name="" value="" />Sàn gỗ
+                    </td>
+                    <td>
+                        <input type="checkbox" name="" value="" />Phòng giặc ủi
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Area
+        </th>
+        <td>
+            <input type="text" name="Area" placeholder="" />
+        </td>
+    </tr>
+    <tr>
+        <th>
+           Bedroom
+        </th>
+        <td>
+            <select id="soflow" style="width:160px">
+                <option style="font-weight:bold">Beds</option>
+                <option value="0">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+                <option value="5">5+</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Bathroom
+        </th>
+        <td>
+            <select id="soflow" style="width:160px">
+                <option style="font-weight:bold">Baths</option>
+                <option value="0">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+                <option value="5">5+</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Parking area
+        </th>
+        <td>
+            <input type="text" name="ParkingArea" placeholder="" />
+        </td>
+    </tr>
+    <tr>
+        <th>
+            District
+        </th>
+        <td>
+            <select id="soflow" class="select1" name="select1" onchange='change2()' style="width:160px">
+                <option value="-1" selected disabled style="font-weight:bold">District</option>
+                @foreach (var item in Model.zDistricts) 
+                {
+                    <option value="@item.ID">@item.DistrictName</option>
+                }
+            </select>
+</td>
+    </tr>
+    <tr>
+        <th>
+            Ward
+        </th>
+        <td>
+            <select id="soflow" class="select2" name="select2" disabled onchange='change3()' style="width:160px">
+                <option value="-1" selected disabled style="font-weight:bold">Ward</option>
+                @foreach (var item in Model.zWards)
+                {
+                    <option value="@item.District_ID">@item.WardName</option>
+                }
+            </select>
+</td>
+    </tr>
+    <tr>
+        <th>
+            Street
+        </th>
+        <td>
+            <select id="soflow" class="select3" name="select3" disabled  style="width:160px">
+                <option value="-1" selected disabled style="font-weight:bold">Street</option>
+                @foreach (var item in Model.zStreets)
+                {
+                    <option value="@item.District_ID">@item.StreetName</option>
+                }
+            </select>
+</td>
+    </tr>
+    <tr>
+        <th>
+            Content
+        </th>
+        <td>
+            <textarea rows="3" cols="23">
+
+</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th>
+
+        </th>
+        <td>
+            <input type="button" id="Post" value="Post"  size="100px"/>
+            <input type="button" id="Draft" value="Draft" />
+        </td>
+    </tr>
+</table>
+
+
+
+
