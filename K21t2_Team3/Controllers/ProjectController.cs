@@ -26,5 +26,10 @@ namespace K21t2_Team3.Controllers
             vm.zWards = entities.WARDs.ToList();
             return View(vm);
         }
+        public ActionResult EditProject(int id)
+        {
+            var ProjectDetail = entities.PROPERTies.FirstOrDefault(x => x.ID == id);
+            return View(ProjectDetail);
+        }
     }
 }
