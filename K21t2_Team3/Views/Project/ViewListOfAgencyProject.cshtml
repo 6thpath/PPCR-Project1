@@ -1,0 +1,69 @@
+﻿@model K21t2_Team3.ViewModels.ViewModel
+
+@{
+    ViewBag.Title = "Sell - View List Of Agency Project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div>
+        <p style="padding-left: 10px;font-size:35px;color:white;font-family:Corbel;">
+            Project List
+        </p>
+    </div>
+    <hr />
+    <div>
+        <table style="font-family:Corbel;color:white;background-color: rgba(0,0,0,0.5);">
+
+            @foreach (var item in Model.zProperties)
+            {
+                <tr>
+                    <!--Avatar-->
+                    <td width="40%" style="border-right: 1px solid white;text-align:center;">
+                        <img src="~/Images/@item.Avatar" class="img-responsive img-thumbnail" width="90%" />
+                        <p style="padding-top:5px;"><i class="fa fa-check-square" aria-hidden="true"></i> @item.PROJECT_STATUS.Status_Name</p>
+                    </td>
+                    <!--Project info-->
+                    <td style="text-align:left;padding: 10px;border-bottom:1px dashed white;">
+                        <!--Name-->
+                        <p style="font-weight:bold;font-size:20px;">@item.PropertyName</p>
+                        <hr />
+                        <!--Price and Features-->
+                        <p>
+                            <span style="font-size:18px;text-decoration:underline;">Price:</span>
+                            <span style="color: #00fc0d">@item.Price @item.UnitPrice</span>
+                            | Beds: @item.BedRoom | Baths: @item.BathRoom
+                        </p>
+                        <hr />
+                        <!--Project type-->
+                        <p style="font-size:18px;">
+                            <span style="text-decoration:underline;">Property type:</span>
+                            <span style="color:#f00">@item.PROPERTY_TYPE.CodeType</span>
+                        </p>
+                        <!--Description-->
+                        <p style="font-size:17px;text-decoration:underline;">Description:</p>
+                        <p>
+                            @item.Content
+                        </p>
+                        <!--View Detail button-->
+                        <p>
+                            <a class="btn btn-default" href="~/Project/Detail/@item.ID/#dt" role="button">View details »</a>
+                            <a class="btn btn-info" style="border:1px solid white" href="#" role="button">Edit »</a>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <hr />
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<hr />
+
+<p style="text-align:center;color:white">
+    <button class=" btn btn-primary"><a href="javascript:void(0);" onclick="history.go(-1);" style="color:white">Back to Previous Page</a></button>
+</p>
