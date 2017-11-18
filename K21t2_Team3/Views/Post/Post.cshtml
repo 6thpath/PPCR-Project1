@@ -58,8 +58,41 @@
             });
 
         });
+
+        $(".select1").change(function () {
+            if ($(this).data('options') === undefined) {
+                /*Taking an array of all options-2 and kind of embedding it on the select1*/
+                $(this).data('options', $('.select2 option').clone());
+            }
+            var id = $(this).val();
+            var options = $(this).data('options').filter('[value=' + id + ']');
+            $('.select2').html(options);
+            $('.select2 select').html(options).change();
+        });
+
+        $(".select2").change(function () {
+            if ($(this).data('options') === undefined) {
+                /*Taking an array of all options-3 and kind of embedding it on the select1*/
+                $(this).data('options', $('.select3 option').clone());
+            }
+            var id = $(this).val();
+            var options = $(this).data('options').filter('[value=' + id + ']');
+            $('.select3').html(options);
+        });
+
+        function change2() {
+            if ($('.select1 option:selected').length) {
+                $('.select2').attr('disabled', false);
+            }
+        }
+
+        function change3() {
+            if ($('.select2 option:selected').length) {
+                $('.select3').attr('disabled', false);
+            }
+        }
     </script>
-}
+}   
 <table style="width:800px", height="800px">
     <tr>
         <th>
